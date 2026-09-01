@@ -74,7 +74,7 @@ if st.button("Generate Post"):
             st.subheader("Generated Post")
             st.write(post)
 
-        except Exception as e:
+        except Exception:
             logger.exception("Failed to generate LinkedIn post")
             st.error(
                 "Unable to generate the post right now. "
