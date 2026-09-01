@@ -17,7 +17,7 @@ def get_length_str(length):
     if length == "Long":
         return "11 to 15 lines"
 
-    return "6 to 10 lines"
+    return None
 
 
 def generate_post(length, language, tag, linkedin_profile_url):
@@ -54,6 +54,11 @@ def generate_post(length, language, tag, linkedin_profile_url):
 
 def get_prompt(length, language, tag, few_shot):
     length_str = get_length_str(length)
+
+    if length_str is None:
+        raise ValueError(
+            "Length must be Short, Medium, or Long."
+        )
 
     prompt = f'''
     Generate a LinkedIn post using the below information. No preamble.
