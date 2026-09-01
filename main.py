@@ -1,5 +1,12 @@
+import logging
+
 import streamlit as st
+
 from post_generator import generate_post
+
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 st.title("LinkedIn Post Generator")
@@ -68,4 +75,8 @@ if st.button("Generate Post"):
             st.write(post)
 
         except Exception as e:
-            st.error(f"Unable to generate post: {e}")
+            logger.exception("Failed to generate LinkedIn post")
+            st.error(
+                "Unable to generate the post right now. "
+                "Please try again later."
+            )
